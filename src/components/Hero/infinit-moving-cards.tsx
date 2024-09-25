@@ -1,15 +1,15 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { Category } from '@prisma/client'
 
 export const InfiniteMovingCards = ({
   items,
-  direction = 'left',
-  speed = 'fast',
+  direction = 'right',
+  speed = 'normal',
   pauseOnHover = true,
   className,
 }: {
@@ -99,3 +99,12 @@ export const InfiniteMovingCards = ({
     </div>
   )
 }
+
+export function InfiniteMovingCardsWrapper(props: { items: Category[], pauseOnHover?: boolean }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <InfiniteMovingCards {...props} />
+    </Suspense>
+  );
+}
+

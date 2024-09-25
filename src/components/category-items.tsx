@@ -4,6 +4,7 @@ import { IconType } from "react-icons"
 import { Button } from "./ui/button"
 import { cn } from "@/lib/utils"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { Suspense } from "react";
 
 type Props = {
     label: string
@@ -43,3 +44,10 @@ export const CategoryItem = ({ label, icon: Icon, value }: Props) => {
     )
 }
 
+export default function CategoryItemWrapper(props: Props) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <CategoryItem {...props} />
+        </Suspense>
+    );
+}

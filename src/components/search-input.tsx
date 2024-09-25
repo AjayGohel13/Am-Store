@@ -1,7 +1,7 @@
 "use client"
 import { Search } from "lucide-react"
 import { Input } from "./ui/input"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useDebounce } from "@/hooks/use-debounce"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import qs from "query-string"
@@ -47,3 +47,11 @@ const SeerchInput = (props: Props) => {
 }
 
 export default SeerchInput
+
+export function SeerchInputWrapper(props: Props) {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SeerchInput {...props} />
+        </Suspense>
+    );
+}

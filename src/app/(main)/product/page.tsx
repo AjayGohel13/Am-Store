@@ -1,5 +1,5 @@
 import { getProduct } from '@/actions/get-product'
-import { InfiniteMovingCards } from '@/components/Hero/moving-categories'
+import { InfiniteMovingCardsWrapperForCategory } from '@/components/Hero/moving-categories'
 import ProductList from '@/components/Hero/product-list'
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { db } from '@/lib/db'
@@ -23,7 +23,7 @@ const page = async ({ searchParams }: Props) => {
     })
     return (
         <MaxWidthWrapper>
-            <InfiniteMovingCards
+            <InfiniteMovingCardsWrapperForCategory
                 items={categories}
             />
             <ProductList

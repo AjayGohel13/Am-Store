@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import DiscountSection from './_components/Discount-section'
 import FeatureBrandSection from './_components/FeatureBrandSection'
 import LoginDialog from './_components/LoginDialog'
-import { InfiniteMovingCards } from '@/components/Hero/infinit-moving-cards'
+import { InfiniteMovingCardsWrapper } from '@/components/Hero/infinit-moving-cards'
 import Image from 'next/image'
 const page = async () => {
   const productForPage = await db.product.findMany({
@@ -189,10 +189,8 @@ const page = async () => {
             </div>
           </div>
           <div className=' mt-10'>
-            <InfiniteMovingCards
+            <InfiniteMovingCardsWrapper
               items={categoris}
-              direction='right'
-              speed='slow'
             />
           </div>
           <div className=' px-5'>

@@ -1,13 +1,13 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Category } from '@prisma/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import qs from "query-string"
 import { Button } from '@/components/ui/button'
 
-export const InfiniteMovingCards = ({
+export const InfiniteMovingCardsCategory = ({
   items,
   pauseOnHover = true,
 }: {
@@ -85,4 +85,12 @@ export const InfiniteMovingCards = ({
       </ul>
     </div>
   )
+}
+
+export function InfiniteMovingCardsWrapperForCategory(props: { items: Category[], pauseOnHover?: boolean }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <InfiniteMovingCardsCategory {...props} />
+    </Suspense>
+  );
 }

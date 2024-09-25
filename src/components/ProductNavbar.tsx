@@ -15,8 +15,7 @@ import Link from 'next/link'
 import { Category } from '@prisma/client'
 import { db } from '@/lib/db'
 import MobileBar from './mobile-nav'
-import SeerchInput from './search-input'
-// import MenuItemData from './acc-menu-item'
+import { SeerchInputWrapper } from './search-input'
 
 type Props = {
     data: Category[]
@@ -134,7 +133,7 @@ const ProductNavbar = ({ data }: Props) => {
                     </DropdownMenu>
                 </div>
                 <div>
-                    <SeerchInput />
+                    <SeerchInputWrapper />
                 </div>
             </div >
 

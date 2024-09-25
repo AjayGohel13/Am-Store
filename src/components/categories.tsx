@@ -1,6 +1,6 @@
 "use client"
 import { Category } from '@prisma/client'
-import { CategoryItem } from './category-items';
+import CategoryItemWrapper from './category-items';
 type Props = {
     items: Category[];
 }
@@ -11,7 +11,7 @@ export const Categories = ({ items }: Props) => {
         <div className=' flex items-center gap-x-2 overflow-x-auto  pb-2'>
             {items.map((item) => {
                 return (
-                    <CategoryItem
+                    <CategoryItemWrapper
                         key={item.id}
                         label={item.name}
                         value={item.id}

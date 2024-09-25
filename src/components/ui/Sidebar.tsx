@@ -10,7 +10,8 @@ import UserAccount from "../UserAccount";
 
 import { useUser } from "@clerk/nextjs";
 import { ModeToggle } from "../mode-toggle";
-import SeerchInput from "../search-input";
+import { SeerchInputWrapper } from "../search-input";
+// import SeerchInput from "../search-input";
 
 interface Links {
   label: string;
@@ -136,7 +137,7 @@ export const MobileSidebar = ({
             <ModeToggle />
           </div>
           <div>
-            <SeerchInput />
+            <SeerchInputWrapper />
 
           </div>
           <div className=" flex flex-row items-center justify-center ">
