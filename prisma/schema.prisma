@@ -1,0 +1,186 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  clerkId      String  @unique
+  name         String?
+  email        String  @unique
+  profileImage String?
+  tier         String? @default("Free")
+  credits      String? @default("10")
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  localGoogleId    String?  @unique
+  googleResourceId String?  @unique
+}
+
+model Product {
+  id           String    @id @default(uuid())
+  userId       String
+  title        String    @db.Text
+  brand        String?   @db.Text
+  stock        Float?
+  status       String?
+  variant      String?   @db.Text
+  description  String?   @db.Text
+  features     String?   @db.Text
+  price        Float?
+  store        String?
+  thumbnail    String?
+  isVerified   Boolean?  @default(false)
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  subCategory  String?
+  images       Images[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  orderCheclId String?
+  stores       store?    @relation(fields: [storeId], references: [id])
+  storeId      String?
+
+  @@index([categoryId])
+}
+
+model Images {
+  id        String   @id @default(uuid())
+  imageUrl  String   @db.Text
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  userId     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  totalPrice Float
+  orderItems OrderItem[]
+  isPaid     Boolean     @default(false)
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id             Int      @unique @default(autoincrement())
+  orderId        String
+  productId      String?
+  userId         String
+  ownerId        String?
+  store_name     String?
+  userName       String?
+  userEmail      String?
+  productName    String?
+  number         Int
+  deliveryStatus Boolean?
+  price          Float?
+  isPaid         Boolean? @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  store   store?  @relation(fields: [storeId], references: [id])
+  storeId String?
+
+  @@map("order_items")
+}
+
+model Cart {
+  id           String   @id @default(uuid())
+  productId    String
+  productOwner String?
+  imageUrl     String?
+  productName  String?
+  userId       String
+  number       Int
+  price        Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Category {
+  id          String        @id @default(uuid())
+  name        String        @unique
+  product     Product[]
+  subCategory SubCategory[]
+}
+
+model SubCategory {
+  id         String    @id @default(uuid())
+  name       String    @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model store {
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  name        String?
+  isVerified  Boolean     @default(false)
+  owner       String?
+  phoneNumber String?
+  email       String?
+  products    Product[]
+  orderItem   OrderItem[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model StripeClient {
+  id             String @id @default(uuid())
+  userId         String @unique
+  StripeClientId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  house_no  String?
+  street_no String?
+  city      String?
+  state     String?
+  country   String?
+  contactNo String?
+  pincode   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Purchase {
+  id        String   @id @default(uuid())
+  userId    String
+  ownerId   String?
+  total     Float?
+  orderId   String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id String @id @default(uuid())
+}
+
+model Visit {
+  id        Int       @id @default(autoincrement())
+  page      String
+  count     Int       @default(0)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
