@@ -23,11 +23,11 @@ const BarVariant = ({ data }: Props) => {
     return (
         <ResponsiveContainer width='100%' height={300} >
             <BarChart data={data} >
-                <CartesianGrid strokeDasharray='3 3' />
+                <CartesianGrid strokeDasharray='2 2' />
                 <defs>
                     <linearGradient id="product" x1="0" y1='0' x2='0' y2='1' >
                     <stop offset='30%' stopColor="#34D399" stopOpacity={1} />
-                    <stop offset='98%' stopColor="#34D399" stopOpacity={0.3} />
+                    <stop offset='98%' stopColor="#34D399" stopOpacity={0.8} />
                     </linearGradient>
 
                 </defs>
@@ -41,10 +41,8 @@ const BarVariant = ({ data }: Props) => {
                 <Tooltip cursor={false} content={<CustomTooltip />} />
                 <Bar
                     type="monotone"
-                    dataKey='totalSold'
-                    stackId="totalSold"
-                    strokeWidth={1}
-                    stroke="#34D399"
+                    dataKey='totalEarnings'
+                    stackId="totalEarnings"
                     fill="url(#product)"
                     className="drop-shadow-sm"
                 />

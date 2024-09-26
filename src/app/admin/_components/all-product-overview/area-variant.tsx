@@ -24,11 +24,17 @@ const AreaVariant = ({ data }: Props) => {
     return (
         <ResponsiveContainer width='100%' height={300} >
             <AreaChart data={data} >
-                <CartesianGrid strokeDasharray='3 3' />
+                <CartesianGrid strokeDasharray='2 2' />
                 <defs>
                     <linearGradient id="product_overview" x1="0" y1='0' x2='0' y2='1' >
                         <stop offset='30%' stopColor="#34D399" stopOpacity={1} />
-                        <stop offset='98%' stopColor="#34D399" stopOpacity={0.5} />
+                        <stop offset='98%' stopColor="#34D399" stopOpacity={0.8} />
+                    </linearGradient>
+                </defs>
+                <defs>
+                    <linearGradient id="product_sold_overview" x1="0" y1='0' x2='0' y2='1' >
+                        <stop offset='30%' stopColor="#fb7185" stopOpacity={1} />
+                        <stop offset='98%' stopColor="#fb7185" stopOpacity={0.5} />
                     </linearGradient>
                 </defs>
                 <XAxis
@@ -39,10 +45,11 @@ const AreaVariant = ({ data }: Props) => {
                     tickMargin={16}
                 />
                 <Tooltip content={<CustomTooltip />} />
+
                 <Area
                     type="monotone"
-                    dataKey="totalSold"
-                    stackId="totalSold"
+                    dataKey="totalEarnings"
+                    stackId="a"
                     strokeWidth={2}
                     stroke="#34D399"
                     fill="url(#product_overview)"

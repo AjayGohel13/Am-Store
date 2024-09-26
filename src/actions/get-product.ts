@@ -1,5 +1,4 @@
 import { db } from "@/lib/db";
-import { Category, Product } from "@prisma/client";
 
 type GetProduct = {
     title?:string;

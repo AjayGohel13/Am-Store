@@ -8,7 +8,7 @@ type props = {
 
 export async function RecentSales({ userId }: props) {
   const analysis = await db.orderItem.findMany({
-    take: 5,
+    take: 4,
     where: {
       ownerId: userId,
     },

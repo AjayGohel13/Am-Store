@@ -22,11 +22,11 @@ const BarVariant = ({ data }: Props) => {
     return (
         <ResponsiveContainer width='100%' height={300} >
             <BarChart data={data} >
-                <CartesianGrid strokeDasharray='3 3' />
+                <CartesianGrid strokeDasharray='2 2' />
                 <defs>
                     <linearGradient id="income6" x1="0" y1='0' x2='0' y2='1' >
                     <stop offset='30%' stopColor="#3d82f6" stopOpacity={1} />
-                    <stop offset='98%' stopColor="#3d82f6" stopOpacity={0.3} />
+                    <stop offset='98%' stopColor="#3d82f6" stopOpacity={0.8} />
                     </linearGradient>
 
                 </defs>
@@ -49,8 +49,7 @@ const BarVariant = ({ data }: Props) => {
                     type="monotone"
                     dataKey='price'
                     stackId="totalEarnings"
-                    strokeWidth={1}
-                    stroke="#3d82f6"
+                    radius={2}
                     fill="url(#income6)"
                     className="drop-shadow-sm"
                 />

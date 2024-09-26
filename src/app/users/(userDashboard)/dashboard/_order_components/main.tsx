@@ -127,7 +127,7 @@ const OrderData = async (props: Props) => {
                                     <div>
                                         <CardHeader className="pb-2">
                                             <CardDescription>This Week</CardDescription>
-                                            <CardTitle className="text-xl md:text-4xl">
+                                            <CardTitle className="text-lg sm:text-2xl md:text-4xl">
                                                 <CountUpComponent
                                                     data={currentweekRevenue}
                                                 />
@@ -135,7 +135,7 @@ const OrderData = async (props: Props) => {
                                         </CardHeader>
                                         <CardContent>
                                             <div className={cn(
-                                                " text-rose-400 text-whiten dark:text-rose-400  ",
+                                                " text-rose-400 text-xs sm:text-lg md:text-xl dark:text-rose-400  ",
                                                 Number(formattedAverage) > 0 && "text-emerald-400 hover:text-emerald-400 dark:text-emerald-400 "
                                             )}>
                                                 {Number(formattedAverage) < 0 && (`${formattedAverage} % from last week`)}
@@ -147,7 +147,7 @@ const OrderData = async (props: Props) => {
 
                                         <CardHeader className="pb-2">
                                             <CardDescription>Previous Week</CardDescription>
-                                            <CardTitle className="text-4xl">
+                                            <CardTitle className="text-lg sm:text-2xl md:text-4xl">
                                                 <CountUpComponent
                                                     data={preWeekRevenue}
                                                 />
@@ -164,8 +164,8 @@ const OrderData = async (props: Props) => {
                             <Card x-chunk="dashboard-05-chunk-2" className="dark:border-zinc-800 dark:bg-black">
                                 <CardHeader className="pb-2">
                                     <CardDescription>This Month</CardDescription>
-                                    <CardTitle className="text-4xl">
-                                        <CountUpComponent
+                                    <CardTitle className="text-lg sm:text-2xl md:text-4xl">
+                                    <CountUpComponent
                                             data={oneMonthRevenue}
                                         />
                                     </CardTitle>

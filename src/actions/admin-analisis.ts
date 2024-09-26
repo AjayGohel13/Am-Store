@@ -66,8 +66,8 @@ export const getAdminAnalisis = async () => {
       where: {
         isPaid: true,
         createdAt: {
-          lte: endOfCurrentMonth,
-          gte: startOfCurrentMonth,
+          lte: endOfPreviousWeek,
+          gte: startOfPreviousWeek,
         },
       },
       select: {
