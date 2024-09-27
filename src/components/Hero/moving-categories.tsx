@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense} from 'react'
 import { Category } from '@prisma/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import qs from "query-string"

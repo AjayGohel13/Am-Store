@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 }
 
 
-const page = async ({ params }:Props) => {
+const page = async ({ params }: Props) => {
 
     const { userId } = auth()
     if (!userId) {
@@ -78,12 +78,6 @@ const page = async ({ params }:Props) => {
         return redirect("/");
     }
 
-    const categories = await db.category.findMany({
-        orderBy: {
-            name: "asc"
-        },
-    })
-
     if (!product) {
         return redirect("/")
     }
@@ -98,28 +92,15 @@ const page = async ({ params }:Props) => {
     ]
     const total = requiredFields.length;
     const completed = requiredFields.filter(Boolean).length;
-    const Brand_option = [
-        {
-            label: "Samsung",
-            value: "samsung",
+
+    const Brand_option1 = await db.product.findMany({
+        where:{
+            isVerified:true,
         },
-        {
-            label: "Apple",
-            value: "Apple",
-        },
-        {
-            label: "Dell",
-            value: "Dell",
-        },
-        {
-            label: "Samsung",
-            value: "samsung",
-        },
-        {
-            label: "Samsung",
-            value: "samsung",
-        },
-    ]
+        select:{
+            brand:true,
+        }
+    })
 
     const subCategories = await db.subCategory.findMany({
         where: {
@@ -157,7 +138,7 @@ const page = async ({ params }:Props) => {
             value: "Yellow",
         },
         {
-            label: "BBlueack",
+            label: "Blue",
             value: "Blue",
         },
         {
@@ -229,15 +210,14 @@ const page = async ({ params }:Props) => {
                                     </CardDescription>
                                 </CardHeader>
                                 <CardContent>
-
                                     <div className="flex flex-col xl:flex-row items-center gap-3 md:gap-8 justify-around">
                                         <div className=" flex  flex-col md:flex-row justify-around w-full">
                                             <BrandForm
                                                 data={product}
                                                 productId={product.id}
-                                                options={Brand_option.map((brands) => ({
-                                                    label: brands.label,
-                                                    value: brands.value,
+                                                options={Brand_option1.map((brands) => ({
+                                                    label: brands.brand!,
+                                                    value: brands.brand!,
                                                 }))}
                                             />
                                             <StockForm
@@ -245,7 +225,6 @@ const page = async ({ params }:Props) => {
                                                 productId={product.id}
                                             />
                                         </div>
-
                                         <div className="flex  flex-col md:flex-row justify-around w-full">
                                             <PriceForm
                                                 data={product}
@@ -280,7 +259,6 @@ const page = async ({ params }:Props) => {
                                             />
                                         </div>
                                         <div className="w-full">
-
                                             <StatusForm
                                                 data={product}
                                                 productId={product.id}
@@ -289,7 +267,6 @@ const page = async ({ params }:Props) => {
                                                     value: subCat.value,
                                                 }))}
                                             />
-
                                         </div>
                                     </div>
                                 </CardContent>
@@ -301,7 +278,6 @@ const page = async ({ params }:Props) => {
                                         productId={product.id}
                                     />
                                 </div>
-
                                 <Action
                                     id={product.id}
                                     disabled={!isComplete}
@@ -310,8 +286,6 @@ const page = async ({ params }:Props) => {
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     )

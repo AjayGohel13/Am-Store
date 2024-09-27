@@ -24,7 +24,6 @@ import OverviewByAllOrders from "@/components/all-order-overview/overview-by-all
 import CountUpComponent from "@/components/countUp-component"
 import { redirect } from "next/navigation"
 import UserAccount from "@/components/UserAccount"
-import { FaPiggyBank } from "react-icons/fa"
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 import OrderData from "./_order_components/main"
 import ProductData from "./_product_data/main"

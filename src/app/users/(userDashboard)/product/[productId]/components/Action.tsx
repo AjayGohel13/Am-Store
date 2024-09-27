@@ -17,7 +17,7 @@ const Action = ({ disabled, id}: Props) => {
         await axios.post(`/api/product/${id}/image`);
         toast.info("Product will be displayed once it will be verified");
         setIsLoading(false)
-        router.push("/");
+        router.push("/users/dashboard");
      }
     return (
         <div className=' mb-10'>
