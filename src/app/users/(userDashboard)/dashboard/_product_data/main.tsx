@@ -8,7 +8,8 @@ const ProductData = async () => {
   if (!userId) return null;
   const products = await db.product.findMany({
     where: {
-      userId: userId
+      userId: userId,
+      isVerified:true,
     }
   })
   const options = [

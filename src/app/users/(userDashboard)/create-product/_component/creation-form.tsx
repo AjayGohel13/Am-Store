@@ -63,7 +63,7 @@ const Creationform = ({ options }: Props) => {
                                     Product name
                                 </FormLabel>
                                 <FormControl>
-                                    <Input disabled={isSubmitting} placeholder="e.g 'Electronics, Fashions'" {...field} className=' dark:bg-slate-600/50 dark:border-slate-500 w-full min-w-[300px] ' />
+                                    <Input disabled={isSubmitting} placeholder="e.g 'Electronics, Fashions'" {...field} className=' dark:bg-zinc-700/50 dark:border-slate-500 w-full min-w-[300px] ' />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

@@ -7,6 +7,8 @@ import { DataTableFacetedFilter } from "@/components/table-components/data-table
 import { DataTableFacetedFilterBoolean } from "@/components/table-components/data-table-boolean-filter"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { FaPlusCircle } from "react-icons/fa"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>,
@@ -23,8 +25,8 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-    <div className="flex items-center justify-between">
-      <div className=" w-full flex gap-x-0 gap-y-3 gap-0 sm:gap-3  flex-row flex-wrap   justify-between items-center xsm:items-start space-x-2">
+    <div className="flex items-center justify-between w-full">
+      <div className=" w-full flex gap-x-0 gap-y-3 gap-0 sm:gap-3  flex-row flex-wrap  items-center xsm:items-start space-x-2">
         <div>
           <Input
             placeholder="Filter Products..."
@@ -71,6 +73,15 @@ export function DataTableToolbar<TData>({
             <Cross2Icon className="ml-2 h-4 w-4" />
           </Button>
         )}
+      </div>
+      <div>
+        <Link href="/users/create-product">
+          <Button
+            variant="cart"
+          >
+            <FaPlusCircle/><span className=" ml-3">Add New</span>
+          </Button>
+        </Link>        
       </div>
     </div>
   )

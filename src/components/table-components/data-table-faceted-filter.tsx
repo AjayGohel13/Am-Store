@@ -20,6 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { ChartArea } from "lucide-react"
 
 interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>
@@ -40,14 +41,14 @@ export function DataTableFacetedFilter<TData, TValue>({
   const selectedValues = new Set(column?.getFilterValue() as string[])
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 border-dashed  dark:bg-black dark:text-white">
-          <PlusCircledIcon className="mr-2 h-4 w-4" />
+    <Popover >
+      <PopoverTrigger asChild >
+        <Button variant="outline" size="sm" className="h-8 border-dashed dark:bg-black dark:text-white">
+          <ChartArea  className="mr-2 h-4 w-4" />
           {title}
           {selectedValues?.size > 0 && (
             <>
-              <Separator orientation="vertical" className="mx-2 h-4" />
+              <Separator orientation="vertical" className="mx-2 h-4 dark:bg-zinc-700" />
               <Badge
                 variant="secondary"
                 className="rounded-sm px-1 font-normal lg:hidden"
@@ -80,8 +81,8 @@ export function DataTableFacetedFilter<TData, TValue>({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0" align="start">
-        <Command>
+      <PopoverContent className="w-[200px] p-0 dark:border-zinc-600 dark:bg-black" align="start">
+        <Command className=" dark:bg-black">
           <CommandInput placeholder={title} />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
