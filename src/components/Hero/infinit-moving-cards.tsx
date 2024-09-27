@@ -9,7 +9,7 @@ import { Category } from '@prisma/client'
 export const InfiniteMovingCards = ({
   items,
   direction = 'right',
-  speed = 'normal',
+  speed = 'slow',
   pauseOnHover = true,
   className,
 }: {
@@ -81,7 +81,7 @@ export const InfiniteMovingCards = ({
         ref={scrollerRef}
         className={cn(
           ' flex min-w-full shrink-0 gap-10 py-4 w-max flex-nowrap',
-          start && 'animate-scroll ',
+          start && 'animate-scrolls ',
           pauseOnHover && 'hover:[animation-play-state:paused]'
         )}
       >

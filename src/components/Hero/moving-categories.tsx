@@ -16,26 +16,6 @@ export const InfiniteMovingCardsCategory = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
- 
-  useEffect(() => {
-    addAnimation();
-  }, []);
-  const [start, setStart] = useState(false);
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
- 
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
- 
-      setStart(true);
-    }
-  }
-
 
   const pathname = usePathname()
   const router = useRouter()
@@ -45,14 +25,13 @@ export const InfiniteMovingCardsCategory = ({
     <div
       ref={containerRef}
       className={cn(
-        'scroller relative z-20  max-w-screen-2xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+        'scroller relative z-20  max-w-screen-2xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]',
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          ' flex min-w-full shrink-0 gap-10 py-4 w-max flex-nowrap',
-          start && 'animate-scroll ',
+          ' flex min-w-full shrink-0 gap-10 py-4 w-max flex-nowrap animate-scroll duration-fast',
           pauseOnHover && 'hover:[animation-play-state:paused]'
         )}
       >

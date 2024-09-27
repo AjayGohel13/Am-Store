@@ -70,7 +70,7 @@ const ProductCard = ({
     }
 
     return (
-        <div className=" p-2 sm:p-4 sm:max-w-[300px]   bg-gray-50 border xsm:max-w-[200px] hover:border hover:border-zinc-950 rounded-sm shadow dark:bg-zinc-900 dark:border-zinc-700 ">
+        <div className=" p-2 sm:p-4 sm:max-w-[300px]   bg-gray-50 border xsm:max-w-full hover:border hover:border-zinc-950 rounded-sm shadow dark:bg-zinc-900 dark:border-zinc-700 ">
 
             <div className=' hover:scale-105 transition ease-linear relative'>
                 <ImageSlider
@@ -107,7 +107,7 @@ const ProductCard = ({
                     <Dialog>
                         <DialogTrigger >
                             <Button variant="ghost">
-                                <Eye className=' h-3 w-3 sm:h-5 sm:w-5' />
+                                <Eye className=' h-3 w-3 xsm:h-5 xsm:w-5' />
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-5xl dark:bg-zinc-950 dark:border-zinc-700">
