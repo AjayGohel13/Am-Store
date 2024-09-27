@@ -21,6 +21,7 @@ export const InfiniteMovingCardsCategory = ({
   const router = useRouter()
   const searchParams = useSearchParams()
   const currentTitle = searchParams.get("title")
+
   return (
     <div
       ref={containerRef}
@@ -36,23 +37,29 @@ export const InfiniteMovingCardsCategory = ({
         )}
       >
         {items.map((item) => {
+          const currentCategoryId = searchParams.get("categoryId");
+
+          const isSelected = currentCategoryId === item.id;
+
           const onClick = () => {
-              const url = qs.stringifyUrl({
-                url: pathname,
-                query: {
-                  title: currentTitle,
-                  categoryId:item.id,
-                }
-              }, { skipNull: true, skipEmptyString: true })
-              router.push(url)
+            const url = qs.stringifyUrl({
+              url: pathname,
+              query: {
+                title: currentTitle,
+                categoryId: isSelected ? null : item.id,
+              }
+            }, { skipNull: true, skipEmptyString: true })
+            router.push(url)
           }
           return (
             <Button
-            key={item.id}
+              key={item.id}
               onClick={onClick}
               type="button"
               variant="outline"
               className={cn("text-xl bg-none cursor-pointer hover:text-2xl transition-all ease-in font-semibold",
+                isSelected && " border-emerald-400 bg-emerald-400/20 text-emerald-400 hover:text-emerald-500 hover:bg-emerald-400/25 "
+
               )}
             >
               <div className=" truncate">
